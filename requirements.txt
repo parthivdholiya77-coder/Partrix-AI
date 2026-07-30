@@ -15,8 +15,6 @@ python-dotenv
 
 langchain-groq
 
-langchain-ollama
-
 chromadb
 faiss-cpu
 sqlite-vec
