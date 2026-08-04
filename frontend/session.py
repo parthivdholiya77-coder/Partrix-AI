@@ -83,7 +83,6 @@ def init_session():
                 )
 
             elif isinstance(msg, AIMessage):
-                # Skip empty AI messages (tool call requests)
                 if msg.content:
                     history.append(
                         {

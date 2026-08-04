@@ -99,7 +99,6 @@ def show_signup():
         )
 
         if success:
-            # Clear signup fields
             st.session_state.pop("signup_username", None)
             st.session_state.pop("signup_email", None)
             st.session_state.pop("signup_password", None)

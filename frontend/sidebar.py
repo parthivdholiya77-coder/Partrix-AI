@@ -1,5 +1,3 @@
-# frontend/sidebar.py
-
 import streamlit as st
 from backend.threads.service import ThreadService
 from frontend.session import reset_chat, load_conversation
@@ -52,13 +50,11 @@ def show_sidebar():
 
     st.sidebar.subheader("💬 Conversations")
 
-    # build list of (thread_id, title) pairs, newest first
     threads_with_titles = [
         (tid, ThreadService.get_title(tid, st.session_state.user["id"]))
         for tid in st.session_state["chat_threads"][::-1]
     ]
 
-    # filter based on search query (case-insensitive substring match)
     if search_query:
         threads_with_titles = [
             (tid, title) for tid, title in threads_with_titles
@@ -91,11 +87,9 @@ def show_sidebar():
 
                 for msg in messages:
 
-                    # Skip tool messages
                     if isinstance(msg, ToolMessage):
                         continue
 
-                    # User messages
                     if isinstance(msg, HumanMessage):
                         temp_messages.append(
                             {
@@ -104,14 +98,11 @@ def show_sidebar():
                             }
                         )
 
-                    # Assistant messages
                     elif isinstance(msg, AIMessage):
 
-                        # Skip AI messages that contain tool calls
                         if getattr(msg, "tool_calls", None):
                             continue
 
-                        # Skip empty assistant messages
                         if not msg.content:
                             continue
 

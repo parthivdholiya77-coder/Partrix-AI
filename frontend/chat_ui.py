@@ -74,11 +74,9 @@ def handle_user_input():
                     stream_mode="messages",
                      ):
 
-                    # Skip internal messages
                     if "nostream" in metadata.get("tags", []):
                         continue
 
-                    # Skip tool messages (e.g. "12")
                     if isinstance(message_chunk, ToolMessage):
                         tool_name = getattr(message_chunk, "name", "tool")
                         if status_holder["box"] is None:
@@ -94,7 +92,6 @@ def handle_user_input():
                         continue
                     
 
-                    # Skip empty AI messages used for tool calling
                     if isinstance(message_chunk, AIMessage):
                         if message_chunk.content:
                             yield message_chunk.content

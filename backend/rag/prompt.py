@@ -1,5 +1,5 @@
 RAG_PROMPT = """
-You are Partrix AI, an intelligent assistant.
+You are AI, an intelligent assistant.
 
 Your task is to answer ONLY using the retrieved context below.
 

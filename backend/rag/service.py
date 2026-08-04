@@ -21,17 +21,13 @@ def ingest_pdf(
     in the thread-specific vector database.
     """
 
-
-    # Load PDF
     documents = load_pdf(file_path)
 
-    # Split into chunks
     chunks = split_documents(documents)
 
     filename = os.path.basename(file_path)
     file_hash = calculate_file_hash(file_path)
 
-    # Add metadata
     for chunk in chunks:
         chunk.metadata["user_id"] = user_id
         chunk.metadata["thread_id"] = thread_id
@@ -43,7 +39,6 @@ def ingest_pdf(
         if "page" not in chunk.metadata:
             chunk.metadata["page"] = "Unknown"
 
-    # Store chunks
     add_documents(
         user_id=user_id,
         thread_id=thread_id,

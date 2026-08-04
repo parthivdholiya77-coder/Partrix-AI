@@ -26,7 +26,6 @@ def tool_node(state: ChatState):
         tool_args = tool_call["args"]
         tool_args["thread_id"] = str(state["thread_id"])
 
-        # Inject runtime values
         if tool_name == "search_documents":
             tool_args["user_id"] = user_id
             tool_args["thread_id"] = thread_id

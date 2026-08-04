@@ -99,20 +99,11 @@ User:
             config={"tags": ["nostream"]},
         )
 
-        print("Raw LLM Response:")
-        print(response.content)
-
         result = json.loads(response.content)
-
-        print("Parsed JSON:")
-        print(result)
-        print("Memory type:", type(result.get("memory")))
 
         if result.get("save"):
             memory = result.get("memory")
 
-            # If LLM returns a dict instead of a string,
-            # convert it to JSON before saving.
             if isinstance(memory, dict):
                 memory = json.dumps(memory)
 
